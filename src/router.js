@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './pages/login'
 import Home from './pages/home'
+import allReceiver from './pages/home/children/allReceiver.vue'
+import wuhanReceiver from './pages/home/children/wuhanReceiver.vue'
 
 Vue.use(Router)
 
@@ -19,8 +21,22 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
+      redirect:'/home/allReceiver',
+      children:[
+        {
+          path: 'allReceiver',
+          name: 'allReceiver',
+          component: allReceiver
+        },
+        {
+          path: 'wuhanReceiver',
+          name: 'wuhanReceiver',
+          component: wuhanReceiver
+        },
+      ]
     },
+    
    
   ]
 })

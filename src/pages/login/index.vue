@@ -39,7 +39,7 @@ export default {
       this.$http
         .post("/users/login", { username, password })
         .then(res => {
-            console.dir(res)
+            // console.dir(res)
             
           this.$message({
             showClose: true,
@@ -51,7 +51,7 @@ export default {
             this.$router.push('/home')
         })
         .catch(err => {
-          console.dir(err);
+          // console.dir(err);
           this.$message({
             showClose: true,
             message: err.response.data.errMsg,

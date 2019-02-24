@@ -1,12 +1,13 @@
 <template>
   <div class="home-container">
     <el-row class="tac">
-      <el-col :span="6">
+      <el-col :span="4">
         <el-menu
-          default-active="1-2"
+          default-active="1-1"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
+          @select="handleSelect"
         >
           <el-submenu index="1">
             <template slot="title">
@@ -43,9 +44,11 @@
               <template slot="title">商家</template>
               <el-menu-item index="2-4-1">选项1</el-menu-item>
             </el-submenu>
-          </el-submenu>
-          
+          </el-submenu> 
         </el-menu>
+      </el-col>
+      <el-col :span="20">
+          <router-view></router-view>
       </el-col>
     </el-row>
   </div>
@@ -59,14 +62,32 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
-      }
+      },
+      handleSelect(key, keyPath){
+        console.log(key, keyPath);
+        switch (key) {
+          case "1-1":
+            //处理1-1的回调
+            this.$router.push('/home/allReceiver')
+            break; 
+            case "1-2":
+            //处理1-2的回调
+            this.$router.push('/home/wuhanReceiver')
+            break;       
+          default:
+            break;
+        }
+      },
+
     }
   }
 </script>
 
 <style lang="less" scoped>
-
-    .el-menu{
+  .home-container{
+      .el-menu{
         border:0
     }
+  }
+    
 </style>
