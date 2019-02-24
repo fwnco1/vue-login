@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import axios from "axios"
 import config from "./config"
-
+import router from '../router'
 // 将Axios挂载到Vue的原型中
 Vue.prototype.$http = axios;
 // 全局配置baseURL
@@ -37,6 +37,17 @@ axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   // 对响应错误做点什么
+  Vue.prototype.$message({
+    showClose: true,
+    message: err.response.data.errMsg,
+    type: "error"
+  })
+  if (err.response.data.status==401) {
+      //如果是无效的token,则跳转到登录页
+      localStorage.removeItem('token')
+      localStorage.removeItem('userinfo')
+      router.push('/')
+  }
   return Promise.reject(error);
 })
 
