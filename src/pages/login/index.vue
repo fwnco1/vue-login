@@ -3,14 +3,15 @@
     <h1>王者荣耀后台管理系统</h1>
     <el-form label-width="80px">
       <el-form-item label="用户名">
-        <el-input v-model="username"></el-input>
+        <el-input v-model="username" ></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="password"></el-input>
+        <el-input v-model="password" @keyup.native.enter="onSubmit"></el-input>
       </el-form-item>
 
       <el-form-item>
         <el-button type="primary" @click="onSubmit">登录</el-button>
+        <el-button type="danger" @click="onResigter">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -43,11 +44,11 @@ export default {
             
           this.$message({
             showClose: true,
-            message: res.data.succMsg,
+            message: '登录成功',
             type: "success"
           })
-            localStorage.setItem('token',res.data.data.token)
-            localStorage.setItem('userinfo',JSON.stringify(res.data.data))
+            localStorage.setItem('token',res.data.token)
+            localStorage.setItem('userinfo',JSON.stringify(res.data))
             this.$router.push('/home')
         })
         .catch(err => {
@@ -58,6 +59,9 @@ export default {
             type: "error"
           })
         })
+    },
+    onResigter(){
+        this.$router.push('/resigter')
     }
   }
 };

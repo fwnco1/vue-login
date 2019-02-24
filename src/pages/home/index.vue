@@ -48,6 +48,11 @@
         </el-menu>
       </el-col>
       <el-col :span="20">
+        <div class="title">
+            <p>昵称:{{userinfo.nickname}}</p>
+            <el-button type="danger" @click="logout">注销</el-button>
+        </div>
+              
           <router-view></router-view>
       </el-col>
     </el-row>
@@ -78,8 +83,24 @@
             break;
         }
       },
+      logout(){
+        localStorage.removeItem('userinfo')
+        localStorage.removeItem('token')
+        this.$message({
+            showClose: true,
+            type: "success",
+            message: '退出成功'
+          })
+          this.$router.push('/')
+      }
 
-    }
+    },
+    data() {
+      return {
+        userinfo:JSON.parse(localStorage.getItem('userinfo') || '{}')
+        
+      }
+    },
   }
 </script>
 
@@ -88,6 +109,21 @@
       .el-menu{
         border:0
     }
+    .title{
+          display: flex;
+           p{
+          margin: 20px 0;
+          font-size: 22px;
+        }
+        button{
+          height: 30px;
+          text-align: center;
+          margin-top: 15px;
+          line-height: 30px;
+          padding: 0 15px;
+          margin-left: 20px;
+        }
+      }
   }
     
 </style>

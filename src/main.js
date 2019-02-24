@@ -10,9 +10,11 @@ import axios from "axios"
 // 将Axios挂载到Vue的原型中
 Vue.prototype.$http = axios;
 // 全局配置baseURL
-axios.defaults.baseURL = 'http://litc.pro:9999/v1';
+axios.defaults.baseURL = 'http://www.litc.pro:9999/v1';
 // 解决跨域问题设置请求头(这里用不上,后台设计好了)
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+//解决验证码无法跨域携带的问题
+axios.defaults.withCredentials = true
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
@@ -29,7 +31,7 @@ axios.interceptors.request.use(function (config) {
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
   // 对响应数据做点什么
-  console.dir(response);
+  // console.dir(response);
   response = response.data
   
   return response;
@@ -54,7 +56,7 @@ router.beforeEach((to, from, next) => {
   // 存在表示已登录
   // 判断如果用户登录了就正常导航
   // 登录页面也不能进行拦截, 应当放行
-  if (token || to.path=='/login') {
+  if (token || to.path=='/login' || to.path=='/resigter') {
       next()
   }else {//用户没有登陆
       next('/')

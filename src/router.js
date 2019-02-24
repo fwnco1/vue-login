@@ -4,6 +4,7 @@ import Login from './pages/login'
 import Home from './pages/home'
 import allReceiver from './pages/home/children/allReceiver.vue'
 import wuhanReceiver from './pages/home/children/wuhanReceiver.vue'
+import Resigter from './pages/resigter'
 
 Vue.use(Router)
 
@@ -34,7 +35,13 @@ export default new Router({
           name: 'wuhanReceiver',
           component: wuhanReceiver
         },
+        
       ]
+    },
+    {
+      path: '/resigter',
+      name: 'resigter',
+      component: Resigter
     },
     
    

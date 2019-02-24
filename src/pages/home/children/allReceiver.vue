@@ -1,6 +1,6 @@
 <template>
   <div class="allReceiver-container">
-    <h1>用户信息</h1>
+
     <el-table :data="ReceiverList" style="width: 100%">
       <el-table-column prop="id" label="用户ID" width="150"></el-table-column>
       <el-table-column label="配送信息">
@@ -69,11 +69,25 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
     .allReceiver-container{
-        h1{
+      .title{
+          display: flex;
+           p{
           margin: 20px 0;
-          font-size: 28px;
+          font-size: 22px;
         }
+        button{
+          height: 30px;
+          text-align: center;
+          margin-top: 15px;
+          line-height: 30px;
+          padding: 0 15px;
+          margin-left: 20px;
+        }
+      }
+      
+      
+       
     }
 </style>
